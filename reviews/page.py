@@ -29,3 +29,4 @@ def show_reviews():
         
 
         ) #AgGrid só aceita como parÂmetro um DataFrame
+    
