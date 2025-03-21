@@ -27,7 +27,7 @@ def show_genres():
         key='genres_grid',
         
 
-        ) #AgGrid só aceita com oparÂmetro um DataFrame
+        ) #AgGrid só aceita como parÂmetro um DataFrame
 
     st.title('Cadastrar um novo gênero: ')
     name= st.text_input('Nome do gênero')
