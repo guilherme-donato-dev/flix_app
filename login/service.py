@@ -13,3 +13,9 @@ def login(username, password):
     else:
         st.session_state.token = response.get('access') #session_state.nomedavariavel. aqui estamos pegando so o token de access
         st.rerun() #rerun é basicamente pra renderizar a tela novamente
+
+#basicamente ela limpa todas as chaves(tokens) que estão no session_state e dps recarrega a pag
+def logout():
+    for key in st.session_state.key():
+        del st.session_state[key]
+    st.rerun()
