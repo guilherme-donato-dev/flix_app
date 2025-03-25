@@ -1,22 +1,30 @@
+import streamlit as st
 from movies.repository import MovieRepository
+
 
 class MovieService:
 
     def __init__(self):
-        self.movie_respository =  MovieRepository()
+        self.movie_repository = MovieRepository()
 
     def get_movies(self):
-        return self.movie_respository.get_movies()
-    
-    def create_movie(self, title, genre, release_date, actors, resume):
+        if 'movies' in st.session_state:
+            return st.session_state.movies
+        movies = self.movie_repository.get_movies()
+        st.session_state.movies = movies
+        return movies
+
+    def create_movie(self, title, release_date, genre, actors, resume):
         movie = dict(
             title=title,
-            genre=genre,
             release_date=release_date,
+            genre=genre,
             actors=actors,
             resume=resume,
         )
-        return self.movie_respository.create_movie(movie)
-    
+        new_movie = self.movie_repository.create_movie(movie)
+        st.session_state.movies.append(new_movie)
+        return new_movie
+
     def get_movie_stats(self):
-        self.movie_respository.get_movie_stats()
+        return self.movie_repository.get_movie_stats()
